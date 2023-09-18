@@ -42,6 +42,9 @@ function GeoChart({ data, property }) {
       .data(data.features)
       .join("path")
       .on("click", (event, feature) => {
+        console.log(feature.properties, 'properties');
+        console.log(property, 'property');
+        console.log(selectedCountry === feature ? null : feature);
         setSelectedCountry(selectedCountry === feature ? null : feature);
       })
       .attr("class", "country")
@@ -58,9 +61,7 @@ function GeoChart({ data, property }) {
       .text(
         feature =>
           feature &&
-          feature.properties.name +
-            ": " +
-            feature.properties[property].toLocaleString()
+          feature.properties.shapeName
       )
       .attr("x", 10)
       .attr("y", 25);
